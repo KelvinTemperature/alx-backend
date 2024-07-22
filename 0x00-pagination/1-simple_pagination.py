@@ -6,6 +6,7 @@ from typing import List
 
 index_range = __import__('0-simple_helper_function').index_range
 
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -32,8 +33,7 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
 
         range = index_range(page, page_size)
-    
+
         r_data = self.dataset()
 
         return r_data[range[0]:range[1]]
-    
