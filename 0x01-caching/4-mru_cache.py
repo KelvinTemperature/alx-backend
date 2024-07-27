@@ -5,7 +5,7 @@ from collections import OrderedDict
 from base_caching import BaseCaching
 
 
-class MRUCache(BaseCache):
+class MRUCache(BaseCaching):
     """Class of MRU Cache"""
     def __init__(self):
         super().__init__()
