@@ -3,10 +3,10 @@
 Basic Cache Module
 """
 
-BaseCache = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
-class BasicCache(BaseCache):
+class BasicCache(BaseCaching):
     """
     Basic Cache Class
     """
@@ -14,7 +14,7 @@ class BasicCache(BaseCache):
         """Adds an item in the cache.
         """
         if key is None or item is None:
-            pass
+            return
         self.cache_data[key] = item
 
     def get(self, key):

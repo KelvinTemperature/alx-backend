@@ -2,10 +2,10 @@
 """FiFO Cache Module"""
 from collections import OrderedDict
 
-BaseCache = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
-class FIFOCache(BaseCache):
+class FIFOCache(BaseCaching):
     """Class of Fifo Cache"""
     def __init__(self):
         super().__init__()
@@ -17,7 +17,7 @@ class FIFOCache(BaseCache):
         if key is None or item is None:
             return
         self.cache_data[key] = item
-        if len(self.cache_data) > BaseCache.MAX_ITEMS:
+        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             first, _ = self.cache_data.popitem(False)
             print("DISCARD: ", first)
 

@@ -2,10 +2,10 @@
 """FiFO Cache Module"""
 from collections import OrderedDict
 
-BaseCache = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
-class LRUCache(BaseCache):
+class LRUCache(BaseCaching):
     """Class of LRU Cache"""
     def __init__(self):
         super().__init__()
@@ -17,7 +17,7 @@ class LRUCache(BaseCache):
         if key is None or item is None:
             return
         if key not in self.cache_data:
-            if len(self.cache_data) + 1 > BaseCache.MAX_ITEMS:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 lru, _ = self.cache_data.popitem(True)
                 print("DISCARD: ", lru)
         self.cache_data[key] = item
