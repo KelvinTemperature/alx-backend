@@ -12,6 +12,8 @@ class LIFOCache(BaseCache):
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
+        """Adds a key using LIFO Algo
+        """
         if key is None or item is None:
             return
         if key not in self.cache_data:
@@ -22,6 +24,6 @@ class LIFOCache(BaseCache):
         self.cache_data.move_to_end(key, last=True)
 
     def get(self, key):
-        if key is None or key not in self.cache_data.keys():
-            return None
-        return self.cache_data[key]
+        """Retrieves an item by key.
+        """
+        return self.cache_data.get(key, None)

@@ -12,6 +12,8 @@ class FIFOCache(BaseCache):
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
+        """Adds content following FiFo Algo
+        """
         if key is None or item is None:
             return
         self.cache_data[key] = item
@@ -20,6 +22,6 @@ class FIFOCache(BaseCache):
             print("DISCARD: ", first)
 
     def get(self, key):
-        if key is None or key not in self.cache_data.keys():
-            return None
-        return self.cache_data[key]
+        """Retrieves an item by key.
+        """
+        return self.cache_data.get(key, None)
