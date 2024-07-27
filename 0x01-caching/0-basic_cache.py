@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
-"""Basic Cache Module"""
+"""
+Basic Cache Module
+"""
 
 BaseCache = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCache):
-    """Basic Cache Class"""
+    """
+    Basic Cache Class
+    """
     def put(self, key, item):
         if key is None or item is None:
             pass
