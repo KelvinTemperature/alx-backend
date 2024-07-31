@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Babel Config Module"""
 from flask_babel import Babel
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 
 class config():
@@ -16,11 +16,16 @@ app.config.from_object(config)
 app.url_map.strict_slashes = False
 babel = Babel(app)
 
+@babel.localeselector
+def get_locale() -> str:
+    """Locale function"""
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
+
 
 @app.route('/')
 def home () -> str:
     """Home route"""
-    return render_template('1-index.html')
+    return render_template('2-index.html')
 
 
 if __name__ == '__main__':
