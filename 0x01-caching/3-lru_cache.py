@@ -2,26 +2,28 @@
 """FiFO Cache Module"""
 from collections import OrderedDict
 
-BaseCache = __import__('base_caching').BaseCaching
+from base_caching import BaseCaching
 
 
-class LRUCache(BaseCache):
+class LRUCache(BaseCaching):
     """Class of LRU Cache"""
     def __init__(self):
         super().__init__()
         self.cache_data = OrderedDict()
-        
+
     def put(self, key, item):
+        """Add a key using LRU algo
+        """
         if key is None or item is None:
             return
         if key not in self.cache_data:
-            if len(self.cache_data) + 1 > BaseCache.MAX_ITEMS:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
                 lru, _ = self.cache_data.popitem(True)
                 print("DISCARD: ", lru)
         self.cache_data[key] = item
         self.cache_data.move_to_end(key, last=False)
-        
+
     def get(self, key):
-        if key is None or key not in self.cache_data.keys():
-            return None
-        return self.cache_data[key]
+        """Retrieves an item by key.
+        """
+        return self.cache_data.get(key, None)
